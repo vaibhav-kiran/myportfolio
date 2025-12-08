@@ -546,10 +546,7 @@ export default function Portfolio() {
         >
           <div className="flex items-baseline justify-between gap-4">
           <div>
-              <p className={`text-xs uppercase tracking-[0.25em] ${mutedText}`}>
-                Hackathon Achievements
-              </p>
-              <h2 className={`mt-2 text-3xl font-semibold sm:text-4xl ${strongText}`}>
+              <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>
                 Winning Innovations
               </h2>
             </div>
