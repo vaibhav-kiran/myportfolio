@@ -543,12 +543,12 @@ export default function Portfolio() {
         <section id="hackathons">
           <div className="flex items-baseline justify-center gap-4">
           <div>
-              <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-6 ${strongText}`}>
+              <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>
                 Winning Innovations
               </h2>
             </div>
           </div>
-          <div className="mt-4 grid gap-6">
+          <div className="mt-10 grid gap-6">
             {hackathons.map((hackathon) => (
               <article
                 key={hackathon.title}

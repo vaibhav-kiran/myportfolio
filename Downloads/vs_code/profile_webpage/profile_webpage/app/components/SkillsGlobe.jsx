@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from 'react';
-import * as THREE from 'three'; // Import Three.js
+import React, { useRef, useEffect } from 'react';
+import * as THREE from 'three';
 
 const SkillsGlobe = () => {
     const mountRef = useRef(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [prevX, setPrevX] = useState(0);
+    const isDraggingRef = useRef(false); // Use ref for dragging state
+    const prevXRef = useRef(0); // Use ref for previous X position
 
     const icons = [
-        "/icons/python.png", // Paths will be relative to public folder
+        "/icons/python.png",
         "/icons/opencv.png",
         "/icons/tensorflow.png",
         "/icons/pytorch.png",
@@ -26,6 +26,8 @@ const SkillsGlobe = () => {
     ];
 
     useEffect(() => {
+        if (!mountRef.current) return;
+
         let width = mountRef.current.clientWidth;
         let height = mountRef.current.clientHeight;
 
@@ -33,7 +35,7 @@ const SkillsGlobe = () => {
         const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
         camera.position.z = 55;
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // alpha:true for transparent background
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(width, height);
         renderer.setPixelRatio(window.devicePixelRatio);
         mountRef.current.appendChild(renderer.domElement);
@@ -41,13 +43,11 @@ const SkillsGlobe = () => {
         let group = new THREE.Group();
         scene.add(group);
 
-        // Function to generate sphere positions
         const spherePoints = (count, r) => {
             const pts = [];
             for (let i = 1; i <= count; i++) {
                 const phi = Math.acos(-1 + (2 * i) / count);
                 const theta = Math.sqrt(count * Math.PI) * phi;
-
                 pts.push({
                     x: r * Math.cos(theta) * Math.sin(phi),
                     y: r * Math.sin(theta) * Math.sin(phi),
@@ -63,8 +63,6 @@ const SkillsGlobe = () => {
 
         icons.forEach((iconFile, i) => {
             const map = loader.load(iconFile);
-
-            // GLOW behind icon
             const glowMat = new THREE.SpriteMaterial({
                 map: glowTexture,
                 color: 0x44aaff,
@@ -76,7 +74,6 @@ const SkillsGlobe = () => {
             glowSprite.position.set(points[i].x, points[i].y, points[i].z);
             group.add(glowSprite);
 
-            // ICON
             const iconMat = new THREE.SpriteMaterial({ map, transparent: true });
             const iconMesh = new THREE.Sprite(iconMat);
             iconMesh.scale.set(6.5, 6.5, 1);
@@ -84,60 +81,81 @@ const SkillsGlobe = () => {
             group.add(iconMesh);
         });
 
+        let animationFrameId; // To store the animation frame ID
+
         const animate = () => {
-            requestAnimationFrame(animate);
-            if (!isDragging) group.rotation.y += 0.002;
+            animationFrameId = requestAnimationFrame(animate);
+            if (!isDraggingRef.current) group.rotation.y += 0.002;
             renderer.render(scene, camera);
         };
         animate();
 
         const handleResize = () => {
-            width = mountRef.current.clientWidth;
-            height = mountRef.current.clientHeight;
-            renderer.setSize(width, height);
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
+            if (mountRef.current) {
+                width = mountRef.current.clientWidth;
+                height = mountRef.current.clientHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            }
         };
         window.addEventListener("resize", handleResize);
 
         const handleMouseDown = (e) => {
-            setIsDragging(true);
-            setPrevX(e.clientX);
+            isDraggingRef.current = true;
+            prevXRef.current = e.clientX;
         };
         const handleMouseUp = () => {
-            setIsDragging(false);
+            isDraggingRef.current = false;
         };
         const handleMouseMove = (e) => {
-            if (isDragging) {
-                let deltaX = e.clientX - prevX;
-                setPrevX(e.clientX);
+            if (isDraggingRef.current) {
+                let deltaX = e.clientX - prevXRef.current;
+                prevXRef.current = e.clientX;
                 group.rotation.y += deltaX * 0.005;
             }
         };
 
         mountRef.current.addEventListener("mousedown", handleMouseDown);
-        window.addEventListener("mouseup", handleMouseUp); // Use window to catch release outside canvas
-        window.addEventListener("mousemove", handleMouseMove); // Use window to catch movement outside canvas
+        window.addEventListener("mouseup", handleMouseUp);
+        window.addEventListener("mousemove", handleMouseMove);
 
-        // Cleanup
+        // Cleanup function
         return () => {
             window.removeEventListener("resize", handleResize);
             if (mountRef.current) {
                 mountRef.current.removeEventListener("mousedown", handleMouseDown);
+                // Ensure to remove the canvas element itself
+                if (renderer.domElement && mountRef.current.contains(renderer.domElement)) {
+                    mountRef.current.removeChild(renderer.domElement);
+                }
             }
             window.removeEventListener("mouseup", handleMouseUp);
             window.removeEventListener("mousemove", handleMouseMove);
+            cancelAnimationFrame(animationFrameId); // Cancel animation frame
             renderer.dispose();
-            group.clear();
+            group.traverse((object) => { // Dispose of textures and materials
+                if (object.isMesh) {
+                    if (object.geometry) object.geometry.dispose();
+                    if (object.material) {
+                        if (Array.isArray(object.material)) {
+                            object.material.forEach(material => material.dispose());
+                        } else {
+                            object.material.dispose();
+                        }
+                    }
+                } else if (object.isSprite) { // For sprites as well
+                    if (object.material) object.material.dispose();
+                }
+            });
             scene.clear();
-            // Free textures and materials if they were explicitly created
         };
-    }, [isDragging, prevX]); // isDragging and prevX are state, not props/dependencies directly affecting setup
+    }, []); // Empty dependency array means this effect runs once on mount and cleans up on unmount
 
     return (
         <div
             ref={mountRef}
-            style={{ width: '100%', height: '100%', minHeight: '400px', cursor: isDragging ? 'grabbing' : 'grab' }} // Added minHeight
+            style={{ width: '100%', height: '100%', minHeight: '400px', cursor: isDraggingRef.current ? 'grabbing' : 'grab' }}
         />
     );
 };
