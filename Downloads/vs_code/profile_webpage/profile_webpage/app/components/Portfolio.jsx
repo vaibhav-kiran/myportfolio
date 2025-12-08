@@ -173,8 +173,8 @@ export default function Portfolio() {
   const cardClass = isDark
     ? "bg-[#111111]"
     : "bg-[#e1e7f0] shadow-sm";
-  const mutedText = isDark ? "text-neutral-400" : "text-[#475569]";
-  const softerText = isDark ? "text-neutral-300" : "text-[#334155]";
+  const mutedText = isDark ? "text-neutral-300" : "text-[#334155]";
+  const softerText = isDark ? "text-neutral-200" : "text-[#1e293b]";
   const strongText = isDark ? "text-white" : "text-[#0b1220]";
   const borderMain = isDark ? "border-[#1f1f24]" : "border-[#d5dce6]";
 
@@ -404,7 +404,7 @@ export default function Portfolio() {
           id="introduction"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h3 className={softerText}>Introduction</h3>
+          <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Introduction</h3>
           <p className={softerText}>
               I'm a Biomedical Engineering student specializing in intelligent
               medical systems and device prototyping. I'm developing machine
@@ -423,7 +423,7 @@ export default function Portfolio() {
           id="education"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h3 className={softerText}>Education</h3>
+          <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Education</h3>
           <div className="experience-timeline">
               {experiences.map((item, index) => (
                   <div key={index} className="mb-8 last:mb-0">
@@ -450,7 +450,7 @@ export default function Portfolio() {
           id="experience"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h3 className={softerText}>Professional Experience</h3>
+          <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Professional Experience</h3>
           <div className="experience-timeline">
               {jobs.map((item, index) => (
                   <div key={index} className="mb-8 last:mb-0">
@@ -475,7 +475,7 @@ export default function Portfolio() {
           id="highlights"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h3 className={softerText}>Highlights</h3>
+          <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Highlights</h3>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2">
               <div className="highlight-group">
                   <div className="highlight-title">
