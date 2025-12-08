@@ -540,11 +540,8 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section
-          id="hackathons"
-          className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
-        >
-          <div className="flex items-baseline justify-between gap-4">
+        <section id="hackathons">
+          <div className="flex items-baseline justify-center gap-4">
           <div>
               <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>
                 Winning Innovations
