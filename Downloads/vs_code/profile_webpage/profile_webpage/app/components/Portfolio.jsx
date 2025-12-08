@@ -404,7 +404,7 @@ export default function Portfolio() {
           id="introduction"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>Introduction</h2>
+          <h3 className={softerText}>Introduction</h3>
           <p className={softerText}>
               I'm a Biomedical Engineering student specializing in intelligent
               medical systems and device prototyping. I'm developing machine
@@ -423,7 +423,7 @@ export default function Portfolio() {
           id="education"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>Education</h2>
+          <h3 className={softerText}>Education</h3>
           <div className="experience-timeline">
               {experiences.map((item, index) => (
                   <div key={index} className="mb-8 last:mb-0">
@@ -450,7 +450,7 @@ export default function Portfolio() {
           id="experience"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>Professional Experience</h2>
+          <h3 className={softerText}>Professional Experience</h3>
           <div className="experience-timeline">
               {jobs.map((item, index) => (
                   <div key={index} className="mb-8 last:mb-0">
@@ -475,7 +475,7 @@ export default function Portfolio() {
           id="highlights"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>Highlights</h2>
+          <h3 className={softerText}>Highlights</h3>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2">
               <div className="highlight-group">
                   <div className="highlight-title">
