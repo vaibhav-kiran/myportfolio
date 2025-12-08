@@ -574,24 +574,7 @@ export default function Portfolio() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <section id="skills" className={`p-8 rounded-2xl ${surfaceClass} mb-8`}>
-            <p className={`text-xs uppercase tracking-[0.25em] ${mutedText}`}>
-              Technical Skills
-            </p>
-            <h2 className={`mt-2 text-3xl font-semibold sm:text-4xl ${strongText}`}>
-              Tools I reach for
-            </h2>
-            <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4">
-              {skills.map((skill) => (
-                <div
-                  key={skill}
-                  className={`rounded-lg p-4 text-center transition-colors duration-200 flex items-center justify-center min-h-full ${cardClass} ${
-                    isDark ? "hover:bg-[#161a2b]" : "hover:bg-[#dfe6f1]"
-                  }`}
-                >
-                  <p className={`text-xs font-medium ${strongText}`}>{skill}</p>
-                </div>
-              ))}
-            </div>
+            <SkillsGlobe />
           </section>
 
           <section id="soft-skills" className={`p-8 rounded-2xl ${surfaceClass} mb-8`}>
