@@ -26,10 +26,16 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background: var(--background-light);
   color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -263,9 +269,16 @@ a {
 
 @media (prefers-color-scheme: light) {
   .cta-button {
-    border: 1px solid var(--border-light);
-    background: var(--card-light);
-    color: var(--text-light);
+    border: 2px solid #cbd5e1;
+    background: #ffffff;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cta-button:hover {
+    border-color: #94a3b8;
+    background: #f8fafc;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -462,7 +475,7 @@ a {
     position: relative;
     /* margin-left: 20px; */ /* This padding will be handled by the parent container */
     padding-left: 30px;
-    border-left: 2px solid var(--border-light);
+    border-left: 2px solid #cbd5e1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -510,7 +523,8 @@ a {
 .experience-timeline .item h2 {
     margin: 0;
     font-size: 20px;
-    color: var(--text-light);
+    color: #0f172a;
+    font-weight: 700;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -523,8 +537,8 @@ a {
 .experience-timeline .item h3 {
     margin: 4px 0 0 0;
     font-size: 15px;
-    color: #555;
-    font-weight: normal;
+    color: #475569;
+    font-weight: 500;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -535,8 +549,9 @@ a {
 
 /* Dates */
 .experience-timeline .item span.dates { /* Added a class to differentiate from other spans */
-    color: #777;
+    color: #64748b;
     font-size: 14px;
+    font-weight: 500;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -548,8 +563,8 @@ a {
 /* Description */
 .experience-timeline .item p {
     margin-top: 10px;
-    color: #333;
-    line-height: 1.4;
+    color: #334155;
+    line-height: 1.5;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -595,7 +610,7 @@ a {
 
 .about-card p {
 
-    color: #555;
+    color: #334155;
 
     line-height: 1.6;
 
@@ -606,6 +621,16 @@ a {
 @media (prefers-color-scheme: dark) {
   .about-card p {
     color: #c7c7c7;
+  }
+}
+
+.about-card h3 {
+    color: #0f172a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .about-card h3 {
+    color: #ffffff;
   }
 }
 
@@ -621,7 +646,7 @@ a {
 
     font-size: 16px;
 
-    font-weight: 600;
+    font-weight: 700;
 
     display: flex;
 
@@ -635,18 +660,14 @@ a {
 
 .highlight-sub {
 
-    font-size: 12px;
-
-    color: #334155; /* Changed from #777 */
+    font-size: 13px;
 
     margin-left: 28px;
+    
+    line-height: 1.6;
+    
+    font-weight: 500;
 
-}
-
-@media (prefers-color-scheme: dark) {
-  .highlight-sub {
-    color: #b5b5b5;
-  }
 }
 
 .about-icon { /* Changed from .icon to .about-icon to avoid conflict */
