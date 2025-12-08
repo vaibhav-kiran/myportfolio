@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import SkillsGlobe from "./SkillsGlobe";
 
 const projects = [
   {
@@ -160,23 +161,23 @@ export default function Portfolio() {
 
   const pageClass = isDark
     ? "bg-[#0a0a0a] text-[#f8fafc]"
-    : "bg-[#f6f8fb] text-[#0b1220]";
+    : "bg-[#ffffff] text-[#0f172a]";
   const headerClass = isDark
     ? "bg-[#0a0a0a]/85"
-    : "bg-white/85";
+    : "bg-white/95 border-b border-[#e2e8f0]";
   const navLinkClass = isDark
     ? "text-neutral-200 hover:text-white"
-    : "text-[#334155] hover:text-[#0b1220]";
+    : "text-[#1e293b] hover:text-[#0f172a] font-medium";
   const surfaceClass = isDark
     ? "bg-[#111111]"
-    : "bg-[#e8edf5] shadow-sm";
+    : "bg-white border border-[#e2e8f0] shadow-sm";
   const cardClass = isDark
     ? "bg-[#111111]"
-    : "bg-[#e1e7f0] shadow-sm";
-  const mutedText = isDark ? "text-neutral-300" : "text-[#334155]";
-  const softerText = isDark ? "text-neutral-200" : "text-[#1e293b]";
-  const strongText = isDark ? "text-white" : "text-[#0b1220]";
-  const borderMain = isDark ? "border-[#1f1f24]" : "border-[#d5dce6]";
+    : "bg-white border border-[#e2e8f0] shadow-md";
+  const mutedText = isDark ? "text-neutral-300" : "text-[#475569]";
+  const softerText = isDark ? "text-neutral-200" : "text-[#334155]";
+  const strongText = isDark ? "text-white" : "text-[#0f172a]";
+  const borderMain = isDark ? "border-[#1f1f24]" : "border-[#cbd5e1]";
 
   const terminalVars = isDark
     ? {
@@ -200,34 +201,46 @@ export default function Portfolio() {
 
   return (
     <div className={`min-h-screen ${pageClass}`}>
-      <header className={`sticky top-0 z-40 glass ${headerClass}`}>
+      <header className={`sticky top-0 z-50 glass ${headerClass} transition-all duration-300`}>
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <nav className="flex items-center gap-6 text-sm">
-            <a className={navLinkClass} href="#about">
+            <a className={`${navLinkClass} transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${
+              isDark ? "focus:ring-[#0aaf]" : "focus:ring-[#6366f1]"
+            }`} href="#about">
               About
             </a>
-            <a className={navLinkClass} href="#hackathons">
+            <a className={`${navLinkClass} transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${
+              isDark ? "focus:ring-[#0aaf]" : "focus:ring-[#6366f1]"
+            }`} href="#hackathons">
               Hackathons
             </a>
-            <a className={navLinkClass} href="#skills">
+            <a className={`${navLinkClass} transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${
+              isDark ? "focus:ring-[#0aaf]" : "focus:ring-[#6366f1]"
+            }`} href="#skills">
               Skills
             </a>
-            <a className={navLinkClass} href="/RESUME.pdf" target="_blank" rel="noreferrer">
+            <a className={`${navLinkClass} transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${
+              isDark ? "focus:ring-[#0aaf]" : "focus:ring-[#6366f1]"
+            }`} href="/RESUME.pdf" target="_blank" rel="noreferrer">
               Resume
             </a>
-            <a className={navLinkClass} href="#soft-skills">
+            <a className={`${navLinkClass} transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${
+              isDark ? "focus:ring-[#0aaf]" : "focus:ring-[#6366f1]"
+            }`} href="#soft-skills">
               Soft Skills
             </a>
-            <a className={navLinkClass} href="#contact">
+            <a className={`${navLinkClass} transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded px-2 py-1 ${
+              isDark ? "focus:ring-[#0aaf]" : "focus:ring-[#6366f1]"
+            }`} href="#contact">
               Contact
             </a>
           </nav>
           <div className="flex items-center gap-3">
             <a
-              className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors duration-150 ${
+              className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                 isDark
-                  ? "border-[#1f2638] bg-[#111424] text-white hover:bg-[#161a2b]"
-                  : "border-[#ced7e3] bg-white text-[#0b1220] shadow-sm hover:bg-[#eef2f7]"
+                  ? "border-[#1f2638] bg-[#111424] text-white hover:bg-[#161a2b] hover:scale-105 focus:ring-[#0aaf]"
+                  : "border-[#cbd5e1] bg-white text-[#0f172a] shadow-sm hover:bg-[#f1f5f9] hover:border-[#94a3b8] hover:scale-105 focus:ring-[#6366f1]"
               }`}
               href="/RESUME.pdf"
               target="_blank"
@@ -240,10 +253,10 @@ export default function Portfolio() {
               type="button"
               aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
               onClick={() => setTheme(isDark ? "light" : "dark")}
-              className={`flex items-center gap-2 rounded-full px-3 py-1 text-xs border transition-colors duration-150 ${
+              className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                 isDark
-                  ? "border-[#2a2a30] bg-[#16161d] text-neutral-200 hover:bg-[#1f1f27]"
-                  : "border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-100 shadow-sm"
+                  ? "border-[#2a2a30] bg-[#16161d] text-neutral-200 hover:bg-[#1f1f27] hover:scale-105 focus:ring-[#0aaf]"
+                  : "border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-100 hover:scale-105 shadow-sm focus:ring-[#6366f1]"
               }`}
             >
               <span>{isDark ? "🌞" : "🌙"}</span>
@@ -253,10 +266,10 @@ export default function Portfolio() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-6 pb-24">
+      <main className="mx-auto max-w-5xl px-6 pb-24 scroll-smooth">
         <section
           id="home"
-          className="relative flex flex-col items-center gap-10 py-20 text-center"
+          className="relative flex flex-col items-center gap-10 py-16 sm:py-24 text-center"
         >
           <div className="absolute inset-0 pointer-events-none">
             <svg
@@ -366,7 +379,7 @@ export default function Portfolio() {
             
             <div className="flex flex-wrap justify-center gap-3">
               <a
-                className="cta-button"
+                className="cta-button transition-all duration-200 hover:scale-105"
                 href="https://www.linkedin.com/in/vaibhav-kiran/"
                 target="_blank"
                 rel="noreferrer"
@@ -375,7 +388,7 @@ export default function Portfolio() {
                 LinkedIn
               </a>
               <a
-                className="cta-button"
+                className="cta-button transition-all duration-200 hover:scale-105"
                 href="https://github.com/vaibhav-kiran"
                 target="_blank"
                 rel="noreferrer"
@@ -384,25 +397,109 @@ export default function Portfolio() {
                 GitHub
               </a>
               <a
-                className="cta-button"
+                className="cta-button transition-all duration-200 hover:scale-105"
                 href="mailto:vaibhavkiran.work@gmail.com"
               >
                 <span>✉️</span>
                 Contact
               </a>
             </div>
+            
+            {/* Core Interests Terminal */}
+            <div className="terminal-window max-w-4xl mx-auto mt-16">
+              <div className="terminal-header">
+                <div className="terminal-controls">
+                  <span className="control-dot control-red"></span>
+                  <span className="control-dot control-yellow"></span>
+                  <span className="control-dot control-green"></span>
+                </div>
+                <span className="terminal-title">Core Interests</span>
+              </div>
+              <div className="terminal-body">
+                <div className="terminal-line">
+                  <span className="terminal-prompt">$</span>
+                  <TypingText 
+                    text=" biomedical-interests --list-focus" 
+                    delay={0} 
+                    showCursor={true}
+                    className="terminal-command"
+                  />
+                </div>
+                <div className="terminal-line terminal-line-delay-1">
+                  <TypingText 
+                    text="Scanning focus areas..." 
+                    delay={800} 
+                    showCursor={true}
+                    className="terminal-text"
+                  />
+                </div>
+                <div className="terminal-line terminal-line-delay-2">
+                  <span className="terminal-check">✓</span>
+                  <TypingText 
+                    text="Machine Learning for Medical Datasets" 
+                    delay={1800}
+                    className="terminal-item"
+                  />
+                </div>
+                <div className="terminal-line terminal-line-delay-3">
+                  <span className="terminal-check">✓</span>
+                  <TypingText 
+                    text="AI-based Health Monitoring Systems" 
+                    delay={2500}
+                    className="terminal-item"
+                  />
+                </div>
+                <div className="terminal-line terminal-line-delay-4">
+                  <span className="terminal-check">✓</span>
+                  <TypingText 
+                    text="3D Medical Imaging & Segmentation (3D Slicer)" 
+                    delay={3200}
+                    className="terminal-item"
+                  />
+                </div>
+                <div className="terminal-line terminal-line-delay-5">
+                  <TypingText 
+                    text="Rapid Prototyping (CAD to 3D Printing Workflow)" 
+                    delay={4000}
+                    className="terminal-item"
+                  />
+                </div>
+                <div className="terminal-line terminal-line-delay-6">
+                  <TypingText 
+                    text="Real-time Alert/Assistance Systems" 
+                    delay={4800}
+                    className="terminal-item"
+                  />
+                </div>
+                <div className="terminal-line terminal-line-delay-7">
+                  <TypingText 
+                    text="Signal & Sensor Data Acquisition for Healthcare" 
+                    delay={5500}
+                    className="terminal-item"
+                  />
+                </div>
+                <div className="terminal-line terminal-line-delay-8">
+                  <TypingText 
+                    text="Biomedical Image Processing (CT, MRI, X-ray)" 
+                    delay={6300}
+                    className="terminal-item"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
         </section>
         
         <section id="about">
-          <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>
+          <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-8 ${strongText}`}>
             About Me
           </h2>
         </section>
 
         <section
           id="introduction"
-          className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
+          className={`p-8 rounded-2xl ${surfaceClass} mb-6`}
         >
           <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Introduction</h3>
           <p className={softerText}>
@@ -413,15 +510,15 @@ export default function Portfolio() {
               techniques to better understand anatomy and enhance clinical
               outcomes.
           </p>
-          <p className={`mt-4 ${softerText}`}>
-              My hands-on experience ranges from backend development to infrastructure automation,
-              always with a focus on reliability, scalability, and continuous improvement.
+              <p className={`mt-4 ${softerText}`}>
+              My hands-on experience ranges from product development to biomedical device prototyping,
+              always with a focus on innovation, functionality, and practical clinical impact.
           </p>
         </section>
 
         <section
           id="education"
-          className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
+          className={`p-8 rounded-2xl ${surfaceClass} mb-6`}
         >
           <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Education</h3>
           <div className="experience-timeline">
@@ -448,7 +545,7 @@ export default function Portfolio() {
 
         <section
           id="experience"
-          className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
+          className={`p-8 rounded-2xl ${surfaceClass} mb-6`}
         >
           <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Professional Experience</h3>
           <div className="experience-timeline">
@@ -473,66 +570,66 @@ export default function Portfolio() {
 
         <section
           id="highlights"
-          className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
+          className={`p-8 rounded-2xl ${surfaceClass} mb-6`}
         >
           <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Highlights</h3>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="highlight-group">
-                  <div className="highlight-title">
+                  <div className={`highlight-title ${isDark ? "text-white" : "!text-[#020617]"}`}>
                       <span className="about-icon"></span>
                       President – Department Technical Club (ReGen-X)
                   </div>
-                  <div className="highlight-sub">Leading technical initiatives, student projects, and innovation-driven activities within the department.</div>
+                  <div className={`highlight-sub ${isDark ? "text-[#b5b5b5]" : "!text-[#1e293b]"}`}>Leading technical initiatives, student projects, and innovation-driven activities within the department.</div>
               </div>
 
               <div className="highlight-group">
-                  <div className="highlight-title">
+                  <div className={`highlight-title ${isDark ? "text-white" : "!text-[#020617]"}`}>
                       <span className="about-icon"></span>
                       Smart India Hackathon 2024 – Winner
                   </div>
-                  <div className="highlight-sub">Recognized for developing a high-impact, problem-solving solution at a national level.</div>
+                  <div className={`highlight-sub ${isDark ? "text-[#b5b5b5]" : "!text-[#1e293b]"}`}>Recognized for developing a high-impact, problem-solving solution at a national level.</div>
               </div>
 
               <div className="highlight-group">
-                  <div className="highlight-title">
+                  <div className={`highlight-title ${isDark ? "text-white" : "!text-[#020617]"}`}>
                       <span className="about-icon"></span>
                       India–Israel Hackathon 2025 – Winner
                   </div>
-                  <div className="highlight-sub">Collaborated on an international innovation challenge and delivered a winning prototype.</div>
+                  <div className={`highlight-sub ${isDark ? "text-[#b5b5b5]" : "!text-[#1e293b]"}`}>Collaborated on an international innovation challenge and delivered a winning prototype.</div>
               </div>
 
               <div className="highlight-group">
-                  <div className="highlight-title">
+                  <div className={`highlight-title ${isDark ? "text-white" : "!text-[#020617]"}`}>
                       <span className="about-icon"></span>
                       Product Engineer – Dizbi Private Ltd
                   </div>
-                  <div className="highlight-sub">Worked on product ideas and developed a smart foot-health monitoring solution.</div>
+                  <div className={`highlight-sub ${isDark ? "text-[#b5b5b5]" : "!text-[#1e293b]"}`}>Worked on product ideas and developed a smart foot-health monitoring solution.</div>
               </div>
 
               <div className="highlight-group">
-                  <div className="highlight-title">
+                  <div className={`highlight-title ${isDark ? "text-white" : "!text-[#020617]"}`}>
                       <span className="about-icon"></span>
                       Product Engineer – Vivnovation
                   </div>
-                  <div className="highlight-sub">Contributing to product development, debugging, and COL documentation processes.</div>
+                  <div className={`highlight-sub ${isDark ? "text-[#b5b5b5]" : "!text-[#1e293b]"}`}>Contributing to product development, debugging, and COL documentation processes.</div>
               </div>
           </div>
         </section>
 
         <section
           id="leadership"
-          className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
+          className={`p-8 rounded-2xl ${surfaceClass} mb-6`}
         >
           <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Leadership Roles</h3>
           <div className="grid grid-cols-1 gap-y-2">
               <div className="highlight-group">
-                  <div className="highlight-title">
+                  <div className={`highlight-title ${isDark ? "text-white" : "!text-[#020617]"}`}>
                       <span className="about-icon"></span>
                       President & Head, REGEN-X — Department Technical Club
                   </div>
               </div>
               <div className="highlight-group">
-                  <div className="highlight-title">
+                  <div className={`highlight-title ${isDark ? "text-white" : "!text-[#020617]"}`}>
                       <span className="about-icon"></span>
                       Senior Coordinator, Corporate Relations — E-Cell
                   </div>
@@ -540,19 +637,19 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="hackathons">
-          <div className="flex items-baseline justify-center gap-4">
+        <section id="hackathons" className="py-12 sm:py-16">
+          <div className="flex items-baseline justify-center gap-4 mb-8">
           <div>
-              <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>
+              <h2 className={`text-3xl font-semibold sm:text-4xl text-center ${strongText}`}>
                 Winning Innovations
               </h2>
             </div>
           </div>
-          <div className="mt-10 grid gap-6">
+          <div className="grid gap-6">
             {hackathons.map((hackathon) => (
               <article
                 key={hackathon.title}
-                className={`group rounded-2xl p-6 transition-transform duration-150 hover:-translate-y-1 hover:shadow-md ${cardClass}`}
+                className={`group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${cardClass}`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -564,7 +661,13 @@ export default function Portfolio() {
                 </div>
                 <div className={`mt-4 ${hackathon.images.length > 1 ? 'grid grid-cols-3 gap-2' : ''}`}>
                   {hackathon.images.map((image, index) => (
-                    <img key={index} src={image} alt={`${hackathon.title} - ${index + 1}`} className={`w-full h-auto rounded-lg object-cover ${index === 0 ? 'max-h-96' : 'max-h-64'}`} />
+                    <img 
+                      key={index} 
+                      src={image} 
+                      alt={`${hackathon.title} - ${index + 1}`} 
+                      className={`w-full h-auto rounded-lg object-cover transition-transform duration-300 hover:scale-105 ${index === 0 ? 'max-h-96' : 'max-h-64'}`}
+                      loading="lazy"
+                    />
                   ))}
                 </div>
               </article>
@@ -572,27 +675,32 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <section id="skills" className={`p-8 rounded-2xl ${surfaceClass} mb-8`}>
-            <SkillsGlobe />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 py-12 sm:py-16">
+          <section id="skills" className={`p-8 rounded-2xl ${surfaceClass}`}>
+            <h2 className={`text-2xl font-semibold mb-6 ${strongText}`}>
+              Technical Skills
+            </h2>
+            <div style={{ width: '100%', height: '500px', overflow: 'hidden' }}>
+              <SkillsGlobe skills={skills} isDark={isDark} />
+            </div>
           </section>
 
-          <section id="soft-skills" className={`p-8 rounded-2xl ${surfaceClass} mb-8`}>
+          <section id="soft-skills" className={`p-8 rounded-2xl ${surfaceClass}`}>
             <p className={`text-xs uppercase tracking-[0.25em] ${mutedText}`}>
               Soft Skills
             </p>
-            <h2 className={`mt-2 text-3xl font-semibold sm:text-4xl ${strongText}`}>
+            <h2 className={`text-2xl font-semibold mb-6 ${strongText}`}>
               My Strengths
             </h2>
-            <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
               {softSkills.map((skill) => (
                 <div
                   key={skill}
-                  className={`rounded-lg p-4 text-center transition-colors duration-200 flex items-center justify-center min-h-full ${cardClass} ${
-                    isDark ? "hover:bg-[#161a2b]" : "hover:bg-[#dfe6f1]"
+                  className={`rounded-lg p-4 text-center transition-all duration-200 flex items-center justify-center min-h-full ${cardClass} ${
+                    isDark ? "hover:bg-[#161a2b] hover:scale-105" : "hover:bg-[#f1f5f9] hover:border-[#94a3b8] hover:scale-105"
                   }`}
                 >
-                  <p className={`text-xs font-medium ${strongText}`}>{skill}</p>
+                  <p className={`text-xs font-semibold ${strongText}`}>{skill}</p>
                 </div>
               ))}
             </div>
@@ -601,9 +709,9 @@ export default function Portfolio() {
 
         <section
           id="contact"
-          className={`p-8 rounded-2xl ${surfaceClass}`}
+          className={`p-8 rounded-2xl ${surfaceClass} mb-6 py-12 sm:py-16`}
         >
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className={`text-xs uppercase tracking-[0.25em] ${mutedText}`}>
                 Contact
@@ -617,14 +725,14 @@ export default function Portfolio() {
             </div>
             <div className="flex flex-wrap gap-3">
               <a
-                className="cta-button"
+                className="cta-button transition-all duration-200 hover:scale-105"
                 href="mailto:vaibhavkiran.work@gmail.com"
               >
                 <span>✉️</span>
                 Email
               </a>
               <a
-                className="cta-button"
+                className="cta-button transition-all duration-200 hover:scale-105"
                 href="https://www.linkedin.com/in/vaibhav-kiran/"
                 target="_blank"
                 rel="noreferrer"
@@ -633,7 +741,7 @@ export default function Portfolio() {
                 LinkedIn
               </a>
               <a
-                className="cta-button"
+                className="cta-button transition-all duration-200 hover:scale-105"
                 href="https://github.com/vaibhav-kiran"
                 target="_blank"
                 rel="noreferrer"
