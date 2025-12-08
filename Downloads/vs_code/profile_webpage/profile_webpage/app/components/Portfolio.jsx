@@ -548,11 +548,11 @@ export default function Portfolio() {
               </h2>
             </div>
           </div>
-          <div className="mt-10 grid gap-6">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {hackathons.map((hackathon) => (
               <article
                 key={hackathon.title}
-                className={`group rounded-2xl p-6 transition-transform duration-150 hover:-translate-y-1 hover:shadow-md ${cardClass}`}
+                className={`group rounded-2xl p-6 transition-transform duration-150 hover:-translate-y-1 hover:shadow-md mb-8 ${cardClass}`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -562,9 +562,9 @@ export default function Portfolio() {
                     <p className={`mt-2 ${softerText}`}>{hackathon.summary}</p>
                   </div>
                 </div>
-                <div className={`mt-4 ${hackathon.images.length > 1 ? 'grid grid-cols-3 gap-2' : ''}`}>
+                <div className="flex flex-wrap gap-2 mt-4">
                   {hackathon.images.map((image, index) => (
-                    <img key={index} src={image} alt={`${hackathon.title} - ${index + 1}`} className={`w-full h-auto rounded-lg object-cover ${index === 0 ? 'max-h-96' : 'max-h-64'}`} />
+                    <img key={index} src={image} alt={`${hackathon.title} - ${index + 1}`} className="w-full h-auto rounded-lg object-cover" />
                   ))}
                 </div>
               </article>
