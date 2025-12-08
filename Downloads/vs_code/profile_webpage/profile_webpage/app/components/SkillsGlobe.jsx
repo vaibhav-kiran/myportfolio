@@ -1,163 +1,197 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
-import * as THREE from 'three';
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Html } from "@react-three/drei";
+import * as THREE from "three";
+import { useRef, useMemo } from "react";
+import React from "react";
 
-const SkillsGlobe = () => {
-    const mountRef = useRef(null);
-    const isDraggingRef = useRef(false); // Use ref for dragging state
-    const prevXRef = useRef(0); // Use ref for previous X position
 
-    const icons = [
-        "/icons/python.png",
-        "/icons/opencv.png",
-        "/icons/tensorflow.png",
-        "/icons/pytorch.png",
-        "/icons/streamlit.png",
-        "/icons/solidworks.png",
-        "/icons/fusion.png",
-        "/icons/autocad.png",
-        "/icons/arduino.png",
-        "/icons/labview.png",
-        "/icons/3dslicer.png",
-        "/icons/matlab.png",
-        "/icons/github.png",
-        "/icons/office.png"
-    ];
+// Child component that belongs inside Canvas
+const IconsSphere = ({ skills, isDark }) => {
+  const groupRef = useRef();
 
-    useEffect(() => {
-        if (!mountRef.current) return;
+  const positions = useMemo(() => {
+    if (!skills || skills.length === 0) return [];
+    return skills.map((_, i) => {
+      const phi = Math.acos(-1 + (2 * i) / skills.length);
+      const theta = Math.sqrt(skills.length * Math.PI) * phi;
+      return [
+        2 * Math.cos(theta) * Math.sin(phi),
+        2 * Math.sin(theta) * Math.sin(phi),
+        2 * Math.cos(phi),
+      ];
+    });
+  }, [skills]);
 
-        let width = mountRef.current.clientWidth;
-        let height = mountRef.current.clientHeight;
 
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-        camera.position.z = 55;
+  useFrame(({ clock }) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y = clock.getElapsedTime() * 0.25;
+    }
+  });
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(width, height);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        mountRef.current.appendChild(renderer.domElement);
+  if (!positions || positions.length === 0) {
+    return null;
+  }
 
-        let group = new THREE.Group();
-        scene.add(group);
-
-        const spherePoints = (count, r) => {
-            const pts = [];
-            for (let i = 1; i <= count; i++) {
-                const phi = Math.acos(-1 + (2 * i) / count);
-                const theta = Math.sqrt(count * Math.PI) * phi;
-                pts.push({
-                    x: r * Math.cos(theta) * Math.sin(phi),
-                    y: r * Math.sin(theta) * Math.sin(phi),
-                    z: r * Math.cos(phi)
-                });
-            }
-            return pts;
-        };
-
-        const points = spherePoints(icons.length, 22);
-        const loader = new THREE.TextureLoader();
-        const glowTexture = loader.load("https://i.ibb.co/fDrdrm6/glow.png");
-
-        icons.forEach((iconFile, i) => {
-            const map = loader.load(iconFile);
-            const glowMat = new THREE.SpriteMaterial({
-                map: glowTexture,
-                color: 0x44aaff,
-                transparent: true,
-                opacity: 0.7
-            });
-            const glowSprite = new THREE.Sprite(glowMat);
-            glowSprite.scale.set(10, 10, 1);
-            glowSprite.position.set(points[i].x, points[i].y, points[i].z);
-            group.add(glowSprite);
-
-            const iconMat = new THREE.SpriteMaterial({ map, transparent: true });
-            const iconMesh = new THREE.Sprite(iconMat);
-            iconMesh.scale.set(6.5, 6.5, 1);
-            iconMesh.position.set(points[i].x, points[i].y, points[i].z);
-            group.add(iconMesh);
-        });
-
-        let animationFrameId; // To store the animation frame ID
-
-        const animate = () => {
-            animationFrameId = requestAnimationFrame(animate);
-            if (!isDraggingRef.current) group.rotation.y += 0.002;
-            renderer.render(scene, camera);
-        };
-        animate();
-
-        const handleResize = () => {
-            if (mountRef.current) {
-                width = mountRef.current.clientWidth;
-                height = mountRef.current.clientHeight;
-                renderer.setSize(width, height);
-                camera.aspect = width / height;
-                camera.updateProjectionMatrix();
-            }
-        };
-        window.addEventListener("resize", handleResize);
-
-        const handleMouseDown = (e) => {
-            isDraggingRef.current = true;
-            prevXRef.current = e.clientX;
-        };
-        const handleMouseUp = () => {
-            isDraggingRef.current = false;
-        };
-        const handleMouseMove = (e) => {
-            if (isDraggingRef.current) {
-                let deltaX = e.clientX - prevXRef.current;
-                prevXRef.current = e.clientX;
-                group.rotation.y += deltaX * 0.005;
-            }
-        };
-
-        mountRef.current.addEventListener("mousedown", handleMouseDown);
-        window.addEventListener("mouseup", handleMouseUp);
-        window.addEventListener("mousemove", handleMouseMove);
-
-        // Cleanup function
-        return () => {
-            window.removeEventListener("resize", handleResize);
-            if (mountRef.current) {
-                mountRef.current.removeEventListener("mousedown", handleMouseDown);
-                // Ensure to remove the canvas element itself
-                if (renderer.domElement && mountRef.current.contains(renderer.domElement)) {
-                    mountRef.current.removeChild(renderer.domElement);
-                }
-            }
-            window.removeEventListener("mouseup", handleMouseUp);
-            window.removeEventListener("mousemove", handleMouseMove);
-            cancelAnimationFrame(animationFrameId); // Cancel animation frame
-            renderer.dispose();
-            group.traverse((object) => { // Dispose of textures and materials
-                if (object.isMesh) {
-                    if (object.geometry) object.geometry.dispose();
-                    if (object.material) {
-                        if (Array.isArray(object.material)) {
-                            object.material.forEach(material => material.dispose());
-                        } else {
-                            object.material.dispose();
-                        }
-                    }
-                } else if (object.isSprite) { // For sprites as well
-                    if (object.material) object.material.dispose();
-                }
-            });
-            scene.clear();
-        };
-    }, []); // Empty dependency array means this effect runs once on mount and cleans up on unmount
-
-    return (
-        <div
-            ref={mountRef}
-            style={{ width: '100%', height: '100%', minHeight: '400px', cursor: isDraggingRef.current ? 'grabbing' : 'grab' }}
-        />
-    );
+  return (
+    <group ref={groupRef}>
+      {positions.map((pos, idx) => {
+        return (
+          <Html
+            key={idx}
+            position={pos}
+            center
+            sprite
+            transform
+            style={{
+              pointerEvents: "auto",
+            }}
+          >
+            <div
+              className="skill-badge"
+              style={{
+                padding: "5px 10px",
+                background: isDark 
+                  ? "#2a2a2a" 
+                  : "#ffffff",
+                borderRadius: "10px",
+                color: isDark ? "#ffffff" : "#0f172a",
+                fontSize: "7px",
+                fontWeight: "600",
+                whiteSpace: "nowrap",
+                border: isDark 
+                  ? "1px solid #404040" 
+                  : "1px solid #e0e0e0",
+                boxShadow: isDark 
+                  ? "0 2px 8px rgba(0, 0, 0, 0.3)" 
+                  : "0 2px 6px rgba(0, 0, 0, 0.1)",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                cursor: "pointer",
+                position: "relative",
+                overflow: "hidden",
+                WebkitFontSmoothing: "antialiased",
+                MozOsxFontSmoothing: "grayscale",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.15) translateZ(0)";
+                e.currentTarget.style.boxShadow = isDark
+                  ? "0 4px 12px rgba(0, 0, 0, 0.4)"
+                  : "0 3px 10px rgba(0, 0, 0, 0.15)";
+                e.currentTarget.style.borderColor = isDark
+                  ? "#555555"
+                  : "#c0c0c0";
+                e.currentTarget.style.background = isDark
+                  ? "#333333"
+                  : "#fafafa";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1) translateZ(0)";
+                e.currentTarget.style.boxShadow = isDark
+                  ? "0 2px 8px rgba(0, 0, 0, 0.3)"
+                  : "0 2px 6px rgba(0, 0, 0, 0.1)";
+                e.currentTarget.style.borderColor = isDark
+                  ? "#404040"
+                  : "#e0e0e0";
+                e.currentTarget.style.background = isDark
+                  ? "#2a2a2a"
+                  : "#ffffff";
+              }}
+            >
+              <span
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  letterSpacing: "0.3px",
+                  WebkitFontSmoothing: "antialiased",
+                  MozOsxFontSmoothing: "grayscale",
+                  textRendering: "optimizeLegibility",
+                }}
+              >
+                {skills[idx]}
+              </span>
+            </div>
+          </Html>
+        );
+      })}
+    </group>
+  );
 };
 
-export default SkillsGlobe;
+// Parent component (UI container)
+export default function SkillsGlobe({ skills = [], isDark = true }) {
+  const bgMatte = isDark
+    ? "#0a0a0a"
+    : "#ffffff";
+
+
+
+  if (!skills || skills.length === 0) {
+    return (
+      <div 
+        style={{
+          width: '100%',
+          height: '100%',
+          background: bgMatte,
+          borderRadius: '24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: isDark ? '#fff' : '#000',
+        }}
+      >
+        No skills to display
+      </div>
+    );
+  }
+
+  return (
+    <div 
+      className="skill-container"
+      style={{
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+    >
+      <Canvas 
+        camera={{ position: [0, 0, 7], fov: 50 }}
+        gl={{ 
+          antialias: true, 
+          alpha: true
+        }}
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'block',
+        }}
+      >
+        <ambientLight intensity={1.7} />
+        <pointLight position={[5, 5, 5]} intensity={1} />
+        <IconsSphere skills={skills} isDark={isDark} />
+        <OrbitControls enableZoom={false} rotateSpeed={0.5} />
+      </Canvas>
+
+      <style jsx>{`
+        .skill-container {
+          width: 100%;
+          height: 100%;
+          background: ${bgMatte};
+          border-radius: 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden !important;
+          position: relative;
+          contain: layout style paint;
+        }
+        
+        .skill-badge {
+          will-change: transform;
+        }
+      `}</style>
+    </div>
+  );
+}
