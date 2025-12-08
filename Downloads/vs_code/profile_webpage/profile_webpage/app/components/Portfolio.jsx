@@ -57,7 +57,7 @@ const experiences = [
 const jobs = [
   {
     title: "Product Developer",
-    institution: "Vivnovation",
+    institution: "Dizbi Private Ltd",
     dates: "August 2023 - Present",
     description: "Contributed multiple innovative project concepts and developed a smart foot-health monitoring device, focusing on functional design and practical clinical impact.",
   },
@@ -523,7 +523,7 @@ export default function Portfolio() {
           id="leadership"
           className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
         >
-          <h3 className={strongText}>Leadership Roles</h3>
+          <h3 className={`text-xl font-semibold mb-2 ${strongText}`}>Leadership Roles</h3>
           <div className="grid grid-cols-1 gap-y-2">
               <div className="highlight-group">
                   <div className="highlight-title">
