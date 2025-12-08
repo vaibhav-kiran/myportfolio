@@ -394,10 +394,7 @@ export default function Portfolio() {
           </div>
         </section>
         
-        <section
-          id="about"
-          className={`p-8 rounded-2xl ${surfaceClass} mb-8`}
-        >
+        <section id="about">
           <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>
             About Me
           </h2>
