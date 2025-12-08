@@ -457,35 +457,38 @@ export default function Portfolio() {
                     className="terminal-item"
                   />
                 </div>
-                <div className="terminal-line terminal-line-delay-5">
-                  <TypingText 
-                    text="Rapid Prototyping (CAD to 3D Printing Workflow)" 
-                    delay={4000}
-                    className="terminal-item"
-                  />
-                </div>
-                <div className="terminal-line terminal-line-delay-6">
-                  <TypingText 
-                    text="Real-time Alert/Assistance Systems" 
-                    delay={4800}
-                    className="terminal-item"
-                  />
-                </div>
-                <div className="terminal-line terminal-line-delay-7">
-                  <TypingText 
-                    text="Signal & Sensor Data Acquisition for Healthcare" 
-                    delay={5500}
-                    className="terminal-item"
-                  />
-                </div>
-                <div className="terminal-line terminal-line-delay-8">
-                  <TypingText 
-                    text="Biomedical Image Processing (CT, MRI, X-ray)" 
-                    delay={6300}
-                    className="terminal-item"
-                  />
-                </div>
-              </div>
+                                <div className="terminal-line terminal-line-delay-5">
+                                  <span className="terminal-check">✓</span>
+                                  <TypingText
+                                    text="Rapid Prototyping (CAD to 3D Printing Workflow)"
+                                    delay={4000}
+                                    className="terminal-item"
+                                  />
+                                </div>
+                                <div className="terminal-line terminal-line-delay-6">
+                                  <span className="terminal-check">✓</span>
+                                  <TypingText
+                                    text="Real-time Alert/Assistance Systems"
+                                    delay={4800}
+                                    className="terminal-item"
+                                  />
+                                </div>
+                                <div className="terminal-line terminal-line-delay-7">
+                                  <span className="terminal-check">✓</span>
+                                  <TypingText
+                                    text="Signal & Sensor Data Acquisition for Healthcare"
+                                    delay={5500}
+                                    className="terminal-item"
+                                  />
+                                </div>
+                                <div className="terminal-line terminal-line-delay-8">
+                                  <span className="terminal-check">✓</span>
+                                  <TypingText
+                                    text="Biomedical Image Processing (CT, MRI, X-ray)"
+                                    delay={6300}
+                                    className="terminal-item"
+                                  />
+                                </div>              </div>
             </div>
           </div>
           </div>
