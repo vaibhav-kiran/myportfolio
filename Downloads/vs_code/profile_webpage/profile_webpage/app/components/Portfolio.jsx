@@ -58,13 +58,13 @@ const jobs = [
   {
     title: "Product Developer",
     institution: "Dizbi Private Ltd",
-    dates: "August 2023 - Present",
+    dates: "July 2024",
     description: "Contributed multiple innovative project concepts and developed a smart foot-health monitoring device, focusing on functional design and practical clinical impact.",
   },
   {
     title: "Product Engineer",
     institution: "Vivnovation",
-    dates: "May 2023 - August 2023",
+    dates: "August 2024 - Present",
     description: "Working on product development, debugging system issues, and assisting in completing COL documentation and requirements.",
   },
 ];
@@ -479,7 +479,7 @@ export default function Portfolio() {
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2">
               <div className="highlight-group">
                   <div className="highlight-title">
-                      <span className="about-icon">👨‍💼</span>
+                      <span className="about-icon"></span>
                       President – Department Technical Club (ReGen-X)
                   </div>
                   <div className="highlight-sub">Leading technical initiatives, student projects, and innovation-driven activities within the department.</div>
@@ -487,7 +487,7 @@ export default function Portfolio() {
 
               <div className="highlight-group">
                   <div className="highlight-title">
-                      <span className="about-icon">🏆</span>
+                      <span className="about-icon"></span>
                       Smart India Hackathon 2024 – Winner
                   </div>
                   <div className="highlight-sub">Recognized for developing a high-impact, problem-solving solution at a national level.</div>
@@ -495,7 +495,7 @@ export default function Portfolio() {
 
               <div className="highlight-group">
                   <div className="highlight-title">
-                      <span className="about-icon">🏅</span>
+                      <span className="about-icon"></span>
                       India–Israel Hackathon 2025 – Winner
                   </div>
                   <div className="highlight-sub">Collaborated on an international innovation challenge and delivered a winning prototype.</div>
@@ -503,7 +503,7 @@ export default function Portfolio() {
 
               <div className="highlight-group">
                   <div className="highlight-title">
-                      <span className="about-icon">💡</span>
+                      <span className="about-icon"></span>
                       Product Engineer – Dizbi Private Ltd
                   </div>
                   <div className="highlight-sub">Worked on product ideas and developed a smart foot-health monitoring solution.</div>
@@ -511,7 +511,7 @@ export default function Portfolio() {
 
               <div className="highlight-group">
                   <div className="highlight-title">
-                      <span className="about-icon">⚙️</span>
+                      <span className="about-icon"></span>
                       Product Engineer – Vivnovation
                   </div>
                   <div className="highlight-sub">Contributing to product development, debugging, and COL documentation processes.</div>
@@ -527,13 +527,13 @@ export default function Portfolio() {
           <div className="grid grid-cols-1 gap-y-2">
               <div className="highlight-group">
                   <div className="highlight-title">
-                      <span className="about-icon">👑</span>
+                      <span className="about-icon"></span>
                       President & Head, REGEN-X — Department Technical Club
                   </div>
               </div>
               <div className="highlight-group">
                   <div className="highlight-title">
-                      <span className="about-icon">🤝</span>
+                      <span className="about-icon"></span>
                       Senior Coordinator, Corporate Relations — E-Cell
                   </div>
               </div>
@@ -543,12 +543,12 @@ export default function Portfolio() {
         <section id="hackathons">
           <div className="flex items-baseline justify-center gap-4">
           <div>
-              <h2 className={`text-3xl font-semibold sm:text-4xl text-center mb-10 ${strongText}`}>
+              <h2 className={`text-3xl font-semibold sm:text-4xl text-center ${strongText}`}>
                 Winning Innovations
               </h2>
             </div>
           </div>
-          <div className="mt-10 grid gap-6">
+          <div className="grid gap-6">
             {hackathons.map((hackathon) => (
               <article
                 key={hackathon.title}
