@@ -53,10 +53,9 @@ const IconsSphere = ({ skills, isDark }) => {
               className="skill-badge"
               style={{
                 padding: "5px 10px",
-                background: isDark 
-                  ? "#2a2a2a" 
-                  : "#ffffff",
-                borderRadius: "10px",
+                                background: isDark
+                                  ? "#111111"
+                                  : "#ffffff",                borderRadius: "10px",
                 color: isDark ? "#ffffff" : "#0f172a",
                 fontSize: "7px",
                 fontWeight: "600",
