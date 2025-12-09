@@ -1,0 +1,75 @@
+Create a modern dark-themed web frontend with the following specifications:
+
+DESIGN THEME:
+- Dark slate background (#0f172a) with animated gradient overlays
+- Glassmorphism effects (semi-transparent cards with backdrop blur)
+- Smooth animations and transitions
+- Futuristic, professional aesthetic
+
+COLOR SCHEME:
+- Primary: Indigo (#6366f1), Secondary: Pink (#ec4899), Accent: Cyan (#06b6d4)
+- Background: Dark slate (#0f172a, #1e293b, #334155)
+- Text: Light grays (#f8fafc, #cbd5e1, #94a3b8)
+- Success: Green (#10b981), Error: Red (#ef4444), Warning: Amber (#f59e0b)
+
+TYPOGRAPHY:
+- Font: Inter (weights 300-700)
+- Large gradient title text
+- Uppercase subtitles with letter-spacing
+- Clean, readable body text
+
+LAYOUT:
+- Centered container (max-width: 1200px)
+- Header with logo and title
+- Card-based content sections
+- Responsive grid layouts
+
+KEY COMPONENTS:
+1. Upload Area: Large drag-and-drop zone with glassmorphism, hover effects, dashed border
+2. Buttons: Gradient backgrounds, hover scale/shadow effects, shimmer on hover
+3. Cards: Semi-transparent with blur, rounded corners (16-24px), hover lift effect
+4. Results: Side-by-side image comparison, statistics badges, smooth fade-in
+
+ANIMATIONS:
+- Floating logo (gentle up/down)
+- Fade-in on page load (top/bottom)
+- Hover scale transforms (1.02x-1.1x)
+- Scanning bar animations
+- Pulsing detection points
+- Smooth color/shadow transitions
+
+EFFECTS:
+- Glassmorphism: rgba(255,255,255,0.05) with backdrop-filter: blur(10px)
+- Multi-level shadows (sm, md, lg, xl)
+- Gradient backgrounds (linear and radial)
+- Colored glows on hover
+- Smooth cubic-bezier transitions (0.3s)
+
+RESPONSIVE:
+- Mobile: Single column, reduced padding, smaller fonts
+- Tablet: Flexible grid, medium spacing
+- Desktop: Full layout with generous spacing
+
+INTERACTIVE FEATURES:
+- Drag and drop with visual feedback
+- Image preview with remove button
+- Loading states with spinners
+- Error messages with shake animation
+- AJAX form submission
+- Smooth scrolling
+
+LOGO:
+- Custom SVG with dark background (#0f172a)
+- Purple gradient face/icon
+- Corner brackets framing
+- Recognition grid overlay
+- Animated scanning bar
+- Floating animation
+
+IMPLEMENTATION:
+- CSS variables for theming
+- Vanilla JavaScript (no frameworks)
+- Semantic HTML
+- Accessibility features
+- Performance optimized (GPU animations)
+

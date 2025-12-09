@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/googlebbd4399f45894c72.html",
+        "destination": "/googlebbd4399f45894c72.html"
+      }
+    ]
+  }
+}
