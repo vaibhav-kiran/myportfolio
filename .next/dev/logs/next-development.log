@@ -1,2 +1,87 @@
 [00:00:00.745] Server  LOG      ✓ Ready in 559ms
 [00:00:10.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:30.816] Server  ERROR    ⨯ ./app/components/SkillsGlobe.jsx
+Module not found: Can't resolve 'styled-jsx/style'
+Import map: aliased to module 'styled-jsx' with subpath '/style' inside of [project]/node_modules/next
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/SkillsGlobe.jsx [Client Component Browser]
+    ./app/components/Portfolio.jsx [Client Component Browser]
+    ./app/components/Portfolio.jsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/SkillsGlobe.jsx [Client Component SSR]
+    ./app/components/Portfolio.jsx [Client Component SSR]
+    ./app/components/Portfolio.jsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:13:30.818] Server  ERROR    ⨯ ./app/components/SkillsGlobe.jsx
+Module not found: Can't resolve 'styled-jsx/style'
+Import map: aliased to module 'styled-jsx' with subpath '/style' inside of [project]/node_modules/next
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/SkillsGlobe.jsx [Client Component Browser]
+    ./app/components/Portfolio.jsx [Client Component Browser]
+    ./app/components/Portfolio.jsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/SkillsGlobe.jsx [Client Component SSR]
+    ./app/components/Portfolio.jsx [Client Component SSR]
+    ./app/components/Portfolio.jsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:13:30.818] Server  ERROR    ⨯ ./app/components/SkillsGlobe.jsx
+Module not found: Can't resolve 'styled-jsx/style'
+Import map: aliased to module 'styled-jsx' with subpath '/style' inside of [project]/node_modules/next
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/SkillsGlobe.jsx [Client Component Browser]
+    ./app/components/Portfolio.jsx [Client Component Browser]
+    ./app/components/Portfolio.jsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/SkillsGlobe.jsx [Client Component SSR]
+    ./app/components/Portfolio.jsx [Client Component SSR]
+    ./app/components/Portfolio.jsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:13:30.818] Server  ERROR    ⨯ ./app/components/SkillsGlobe.jsx
+Module not found: Can't resolve 'styled-jsx/style'
+Import map: aliased to module 'styled-jsx' with subpath '/style' inside of [project]/node_modules/next
+
+
+Import traces:
+  Client Component Browser:
+    ./app/components/SkillsGlobe.jsx [Client Component Browser]
+    ./app/components/Portfolio.jsx [Client Component Browser]
+    ./app/components/Portfolio.jsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/components/SkillsGlobe.jsx [Client Component SSR]
+    ./app/components/Portfolio.jsx [Client Component SSR]
+    ./app/components/Portfolio.jsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:13:31.198] Server  LOG      ✓ Compiled in 267ms
