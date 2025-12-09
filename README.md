@@ -2,7 +2,7 @@
 
 Welcome to the official repository for Vaibhav Kiran's personal portfolio website. This project is a dynamic, modern showcase of his skills, projects, and professional journey in the field of Biomedical Engineering, with a focus on intelligent medical systems and AI.
 
-**🚀 [View the Live Website](https://vaibhav-kiran.web.app) 🚀**
+** [View the Live Website](https://vaibhav-kiran.web.app) **
 
 ---
 
@@ -10,7 +10,7 @@ Welcome to the official repository for Vaibhav Kiran's personal portfolio websit
 
 This portfolio is more than just a resume; it's an interactive experience designed to highlight Vaibhav's expertise in medical device prototyping, machine learning, 3D design, and advanced imaging. It serves as a central hub for his professional presence, providing detailed insights into his education, experience, and key achievements.
 
-### ✨ Key Features
+### Key Features
 
 *   **Interactive 3D Skills Globe:** A visually engaging and interactive globe built with **Three.js** and **React Three Fiber** to display technical skills.
 *   **Comprehensive Experience:** Detailed sections for professional experience, leadership roles, and education.
@@ -19,7 +19,7 @@ This portfolio is more than just a resume; it's an interactive experience design
 *   **Responsive Design:** Fully responsive layout for seamless viewing on desktops, tablets, and mobile devices.
 *   **Light/Dark Mode:** A toggle to switch between light and dark themes for user comfort.
 
-### 🛠️ Tech Stack
+### Tech Stack
 
 This project is built with a modern, powerful tech stack:
 
